@@ -1,0 +1,30 @@
+{
+  "name": "sisdishwapp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "^4.15.5",
+    "hbs": "~4.0.1",
+    "morgan": "~1.8.1",
+    "request": "^2.83.0",
+    "serve-favicon": "~2.4.2",
+    "yamljs": "^0.3.0"
+  },
+  "description": "application for sidis homework",
+  "main": "app.js",
+  "devDependencies": {},
+  "keywords": [
+    "distributed",
+    "system"
+  ],
+  "author": "asepwhite",
+  "license": "ISC"
+}
