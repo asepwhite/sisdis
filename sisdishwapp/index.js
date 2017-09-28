@@ -66,7 +66,7 @@ app.all('/hello', jsonParser, function(req, res){
       responseObject.apiversion = apiVersion
       var responseString = "Good "
       var jobs = []
-      request.get('172.17.0.70:17088', function(error, response, body){
+      request.get('http://172.17.0.70:17088/', function(error, response, body){
         if(error){
           errorMsg = "Error when getting server time"
           responseObject.detail = errorMsg
