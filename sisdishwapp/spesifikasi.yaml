@@ -5,7 +5,7 @@ info:
   license:
     name: GPL
     url: 'https://www.gnu.org/licenses/gpl-3.0.en.html'
-host: "ALAMAT_BINDING_ANDA:PORT_ANDA"
+host: "172.17.0.10:80"
 basePath: "/api"
 schemes:
   - http

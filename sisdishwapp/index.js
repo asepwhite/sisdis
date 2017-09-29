@@ -19,7 +19,7 @@ function validatePlusOneRequest(param){
       if (param < 0) {
         errorMsg = "Parameter is not a positive integer"
       } else {
-        return param++;
+        return ++param;
       }
     }
   }
