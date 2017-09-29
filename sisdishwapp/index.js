@@ -25,26 +25,35 @@ function validatePlusOneRequest(param){
   }
   return -1;
 }
-app.get('/api/plus_one/:targetNumber', function (req, res) {
+app.all('/api/plus_one/:targetNumber', function (req, res) {
+  var incrementedNumber = validatePlusOneRequest(req.params.targetNumber)
+  var responseObject = {}
+  if (req.method !== "GET") {
+    errorMsg = "Can not call API with other method type except GET"
+    responseObject.detail = errorMsg
+    responseObject.status = 405
+    responseObject.title = "Method Not Allowed"
+    res.status(405).send(responseObject);
+  }
   var incrementedNumber = validatePlusOneRequest(req.params.targetNumber)
   var responseObject = {}
   if (incrementedNumber === -1) {
     responseObject.detail = errorMsg
     responseObject.status = 404
-    responseObject.title = "Bad Request"
-    res.status(404).send(responseObj);
+    responseObject.title = "Not Found"
+    res.status(404).send(responseObject);
   } else {
     var yamlObj = YAML.load('spesifikasi.yaml');
     var apiVersion = parseFloat(yamlObj.info.version)
     responseObject.plusoneret = incrementedNumber
     responseObject.apiversion = apiVersion
-    res.status(200).send(responseObject)
+    res.status(200).send(JSON.stringify(responseObject))
   }
   errorMsg = "";
 })
 
 
-app.all('/hello', jsonParser, function(req, res){
+app.all('/api/hello', jsonParser, function(req, res){
   var responseObject = {}
   if (req.method !== "POST") {
     errorMsg = "Can not call API with other method type except POST"
@@ -89,8 +98,8 @@ app.all('/hello', jsonParser, function(req, res){
               res.status(504).send(responseObject);
             } else {
               data = JSON.parse(data)
-              responseObject.count = data.count
               data.count++;
+              responseObject.count = data.count
               data = JSON.stringify(data)
               fs.writeFile('count.json', data, 'utf8', function(err){
                 res.status(200).send(responseObject)
@@ -99,20 +108,16 @@ app.all('/hello', jsonParser, function(req, res){
         })
       })
     }
-
   }
 });
 
-// app.get('/time', function(req,res){
-//   var responseObject = {}
-//   responseObject.datetime = '2017-09-28T16:22:34.707087Z'
-//   responseObject.state = 'Afternoon'
-//   res.status(200).send(responseObject)
-// });
+app.get('/api/spesifikasi.yaml', function(req, res){
+  res.sendFile(__dirname+'/spesifikasi.yaml')
+});
 
 app.all('*', function(req, res){
   var responseObject = {}
-  responseObject.detail = "he requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again."
+  responseObject.detail = "The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again."
   responseObject.status = "404"
   responseObject.title = "not found"
   res.status(404).send(responseObject)
