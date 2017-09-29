@@ -1,0 +1,23 @@
+{
+  "name": "sisdishw",
+  "version": "1.0.0",
+  "description": "http protocol using node js!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
+  },
+  "author": "akbar septriyan",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asepwhite/sisdis.git"
+  },
+  "keywords": [
+    "homework"
+  ],
+  "bugs": {
+    "url": "https://github.com/asepwhite/sisdis/issues"
+  },
+  "homepage": "https://github.com/asepwhite/sisdis#readme"
+}
